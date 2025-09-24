@@ -85,7 +85,7 @@ export default function Home() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -101,7 +101,7 @@ export default function Home() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -117,7 +117,7 @@ export default function Home() {
             required
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -133,7 +133,7 @@ export default function Home() {
             rows={3}
             value={formData.summary}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -149,7 +149,7 @@ export default function Home() {
             rows={4}
             value={formData.experience}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function Home() {
             rows={3}
             value={formData.education}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
           />
         </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
             required
             value={formData.skills}
             onChange={handleChange}
-            className="w-full border border-gray-300 rounded px-3 py-2"
+            className="w-full border border-black-300 rounded px-3 py-2"
             placeholder="e.g. JavaScript, React, Node.js"
           />
         </div>
