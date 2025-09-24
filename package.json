@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "jspdf": "^3.0.3",
-    "next": "15.5.4",
+    "next": "^14.1.0"",
     "openai": "^5.23.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
@@ -32,4 +32,5 @@
     "tailwindcss": "^4.1.13",
     "typescript": "^5"
   }
+
 }
