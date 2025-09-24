@@ -75,7 +75,7 @@ export default function Home() {
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md shadow-md">
         {/* Name */}
         <div>
-          <label htmlFor="name" className="block font-semibold mb-1">
+          <label htmlFor="name" className="block font-semibold mb-1 text-black">
             Full Name
           </label>
           <input
@@ -91,7 +91,7 @@ export default function Home() {
 
         {/* Email */}
         <div>
-          <label htmlFor="email" className="block font-semibold mb-1">
+          <label htmlFor="email" className="block font-semibold mb-1 text-black">
             Email
           </label>
           <input
@@ -107,7 +107,7 @@ export default function Home() {
 
         {/* Phone */}
         <div>
-          <label htmlFor="phone" className="block font-semibold mb-1">
+          <label htmlFor="phone" className="block font-semibold mb-1 text-black">
             Phone
           </label>
           <input
@@ -123,7 +123,7 @@ export default function Home() {
 
         {/* Summary */}
         <div>
-          <label htmlFor="summary" className="block font-semibold mb-1">
+          <label htmlFor="summary" className="block font-semibold mb-1 text-black">
             Professional Summary
           </label>
           <textarea
@@ -139,7 +139,7 @@ export default function Home() {
 
         {/* Experience */}
         <div>
-          <label htmlFor="experience" className="block font-semibold mb-1">
+          <label htmlFor="experience" className="block font-semibold mb-1 text-black">
             Work Experience
           </label>
           <textarea
@@ -155,7 +155,7 @@ export default function Home() {
 
         {/* Education */}
         <div>
-          <label htmlFor="education" className="block font-semibold mb-1">
+          <label htmlFor="education" className="block font-semibold mb-1 text-black">
             Education
           </label>
           <textarea
@@ -171,7 +171,7 @@ export default function Home() {
 
         {/* Skills */}
         <div>
-          <label htmlFor="skills" className="block font-semibold mb-1">
+          <label htmlFor="skills" className="block font-semibold mb-1 text-black">
             Skills (comma separated)
           </label>
           <input
