@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
     <main className="max-w-3xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6 text-center">AI Resume Builder</h1>
+      <h1 className="text-4xl font-bold mb-6 text-center text-black">AI Resume Builder</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md shadow-md">
         {/* Name */}
@@ -85,7 +85,7 @@ export default function Home() {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -101,7 +101,7 @@ export default function Home() {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -117,7 +117,7 @@ export default function Home() {
             required
             value={formData.phone}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -133,7 +133,7 @@ export default function Home() {
             rows={3}
             value={formData.summary}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -149,7 +149,7 @@ export default function Home() {
             rows={4}
             value={formData.experience}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -165,7 +165,7 @@ export default function Home() {
             rows={3}
             value={formData.education}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
           />
         </div>
 
@@ -181,7 +181,7 @@ export default function Home() {
             required
             value={formData.skills}
             onChange={handleChange}
-            className="w-full border border-black rounded px-3 py-2"
+            className="w-full border border-black rounded px-3 py-2 text-black"
             placeholder="e.g. JavaScript, React, Node.js"
           />
         </div>
@@ -202,17 +202,16 @@ export default function Home() {
         {resumeOutput && <pre>{resumeOutput}</pre>}
         {!error && !resumeOutput && <p className="text-gray-500">Your generated resume will appear here.</p>}
 
-    {resumeOutput && (
-    <button
-    onClick={() => downloadPDF(resumeOutput)}
-    className="mt-4 bg-green-600 text-white py-2 px-4 rounded"
-  >
-    Download PDF
-  </button>
-)}
+        {resumeOutput && (
+          <button
+            onClick={() => downloadPDF(resumeOutput)}
+            className="mt-4 bg-green-600 text-white py-2 px-4 rounded"
+          >
+            Download PDF
+          </button>
+        )}
       </section>
     </main>
   );
 }
-
 
