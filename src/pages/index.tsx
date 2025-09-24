@@ -1,11 +1,39 @@
-import { useState } from 'react';
-import jsPDF from 'jspdf';
+import { useState } from "react";
+import jsPDF from "jspdf";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Head from 'next/head';
+
+<>
+<Head>
+<title>AI Resume Builder - Create Your Resume with AI</title>
+<meta name="description" content="Easily generate a professional resume using AI. Free and fast AI resume builder." />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{/* Open Graph / Facebook */}
+<meta property="og:title" content="AI Resume Builder - Create Your Resume with AI" />
+<meta property="og:description" content="Easily generate a professional resume using AI. Free and fast AI resume builder." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ai-resume-builder-93xtbn25k-kanaks-projects-20f76d01.vercel.app/" />
+<meta property="og:image" content="https://your-vercel-domain.vercel.app/og-image.png" />
+
+{/* Twitter */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Resume Builder - Create Your Resume with AI" />
+<meta name="twitter:description" content="Easily generate a professional resume using AI. Free and fast AI resume builder." />
+<meta name="twitter:image" content="https://your-vercel-domain.vercel.app/og-image.png" />
+</Head>
+
+{/* Your existing JSX here */}
+<main className="max-w-3xl mx-auto p-6">
+{/* ... your form and content */}
+</main>
+</>
 
 function downloadPDF(text: string) {
   const doc = new jsPDF();
   doc.setFontSize(12);
   doc.text(text, 10, 10);
-  doc.save('resume.pdf');
+  doc.save("resume.pdf");
 }
 
 type FormData = {
@@ -19,26 +47,26 @@ type FormData = {
 };
 
 export default function Home() {
+  const { data: session } = useSession();
+
   const [formData, setFormData] = useState<FormData>({
-    name: '',
-    email: '',
-    phone: '',
-    summary: '',
-    experience: '',
-    education: '',
-    skills: '',
+    name: "",
+    email: "",
+    phone: "",
+    summary: "",
+    experience: "",
+    education: "",
+    skills: "",
   });
 
   const [loading, setLoading] = useState(false);
   const [resumeOutput, setResumeOutput] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Handle form input changes
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   }
 
-  // Submit form to API
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -46,17 +74,15 @@ export default function Home() {
     setResumeOutput(null);
 
     try {
-      const res = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+      const res = await fetch("/api/generate", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ formData }),
       });
 
       if (!res.ok) {
         const data = await res.json();
-        throw new Error(data.error || 'Failed to generate resume');
+        throw new Error(data.error || "Failed to generate resume");
       }
 
       const data = await res.json();
@@ -68,9 +94,32 @@ export default function Home() {
     }
   }
 
+  if (!session) {
+    return (
+      <main className="max-w-3xl mx-auto p-6 text-center">
+        <h1 className="text-4xl font-bold mb-6">AI Resume Builder</h1>
+        <p className="mb-4">Please sign in to use the app.</p>
+        <button
+          onClick={() => signIn("github")}
+          className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
+        >
+          Sign in with GitHub
+        </button>
+      </main>
+    );
+  }
+
   return (
     <main className="max-w-3xl mx-auto p-6">
-      <h1 className="text-4xl font-bold mb-6 text-center text-black">AI Resume Builder</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-4xl font-bold">AI Resume Builder</h1>
+        <button
+          onClick={() => signOut()}
+          className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+          Sign out
+        </button>
+      </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-md shadow-md">
         {/* Name */}
@@ -192,7 +241,7 @@ export default function Home() {
           disabled={loading}
           className="w-full bg-blue-600 text-white font-semibold py-3 rounded hover:bg-blue-700 transition"
         >
-          {loading ? 'Generating...' : 'Generate Resume'}
+          {loading ? "Generating..." : "Generate Resume"}
         </button>
       </form>
 
@@ -207,6 +256,26 @@ export default function Home() {
             onClick={() => downloadPDF(resumeOutput)}
             className="mt-4 bg-green-600 text-white py-2 px-4 rounded"
           >
+
+ {resumeOutput && (
+  <div className="mt-4">
+    <button
+      onClick={() => downloadPDF(resumeOutput)}
+      className="mr-4 bg-green-600 text-white py-2 px-4 rounded"
+    >
+      Download PDF
+    </button>
+    <a
+      href={`https://twitter.com/intent/tweet?text=Check%20out%20this%20AI%20Resume%20Builder%20I%20used!%20Generate%20your%20resume%20fast%20and%20free.%20${encodeURIComponent('https://ai-resume-builder-93xtbn25k-kanaks-projects-20f76d01.vercel.app/')}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+    >
+      Share on Twitter
+    </a>
+  </div>
+)}
+
             Download PDF
           </button>
         )}
@@ -214,4 +283,5 @@ export default function Home() {
     </main>
   );
 }
+
 
